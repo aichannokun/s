@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title></title>
+    <meta name="google-client-id" content="265288888730-59oq6cl7c0ngc8kej54c2h33j8i1pv8j.apps.googleusercontent.com">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <style>
+        <span data-t="CiAgICAgICAgKiB7IGJveC1zaXppbmc6IGJvcmRlci1ib3g7IC13ZWJraXQtdGFwLWhpZ2hsaWdodC1jb2xvcjogdHJhbnNwYXJlbnQ7IH0KICAgICAgICBib2R5IHsgZm9udC1mYW1pbHk6ICdNYWxndW4gR290aGljJywgLWFwcGxlLXN5c3RlbSwgc2Fucy1zZXJpZjsgcGFkZGluZzogMTBweDsgYmFja2dyb3VuZDogI2YyZjJmNzsgbWFyZ2luOiAwOyBmb250LXNpemU6IDE0cHg7IH0KICAgICAgICBoMSB7IGNvbG9yOiAjMWExYTFhOyBmb250LXNpemU6IDE4cHg7IHRleHQtYWxpZ246IGNlbnRlcjsgbWFyZ2luOiAwIDAgMTJweDsgZm9udC13ZWlnaHQ6IDcwMDsgfQoKICAgICAgICAvKiDilIDilIAg67KE7Yq8IOqzte2GtSDilIDilIAgKi8KICAgICAgICBidXR0b24sIGxhYmVsLmJ0bi1maWxlIHsKICAgICAgICAgICAgZGlzcGxheTogaW5saW5lLWJsb2NrOyBwYWRkaW5nOiA4cHggMTRweDsgYm9yZGVyOiAxcHggc29saWQgI2QxZDFkMTsKICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogOHB4OyBjdXJzb3I6IHBvaW50ZXI7IGZvbnQtc2l6ZTogMTNweDsgZm9udC13ZWlnaHQ6IDYwMDsKICAgICAgICAgICAgYmFja2dyb3VuZDogI2ZmZjsgY29sb3I6ICMxYTFhMWE7IHRyYW5zaXRpb246IGJhY2tncm91bmQgMC4xMnM7CiAgICAgICAgICAgIHdoaXRlLXNwYWNlOiBub3dyYXA7IG1hcmdpbjogMnB4OyBmb250LWZhbWlseTogaW5oZXJpdDsgdGV4dC1hbGlnbjogY2VudGVyOwogICAgICAgIH0KICAgICAgICBidXR0b246aG92ZXIsIGxhYmVsLmJ0bi1maWxlOmhvdmVyIHsgYmFja2dyb3VuZDogI2YwZjBmMDsgfQogICAgICAgIGJ1dHRvbi5wcmltYXJ5IHsgYmFja2dyb3VuZDogIzFjMWMxZTsgY29sb3I6ICNmZmY7IGJvcmRlci1jb2xvcjogIzFjMWMxZTsgfQogICAgICAgIGJ1dHRvbi5wcmltYXJ5OmhvdmVyIHsgYmFja2dyb3VuZDogIzNhM2EzYzsgfQogICAgICAgIGJ1dHRvbi5kYW5nZXIgIHsgY29sb3I6ICNjMDM5MmI7IGJvcmRlci1jb2xvcjogI2MwMzkyYjsgYmFja2dyb3VuZDogI2ZmZjsgfQogICAgICAgIGJ1dHRvbi5kYW5nZXI6aG92ZXIgIHsgYmFja2dyb3VuZDogI2ZmZjBlZjsgfQogICAgICAgIGJ1dHRvbi5tdXRlZCAgIHsgYmFja2dyb3VuZDogI2YyZjJmNzsgY29sb3I6ICM1NTU7IGJvcmRlci1jb2xvcjogI2QxZDFkMTsgfQogICAgICAgIGJ1dHRvbi5tdXRlZDpob3ZlciAgIHsgYmFja2dyb3VuZDogI2U4ZThlZDsgfQogICAgICAgIGJ1dHRvbi5zbSB7IHBhZGRpbmc6IDVweCAxMHB4OyBmb250LXNpemU6IDEycHg7IGJvcmRlci1yYWRpdXM6IDZweDsgfQogICAgICAgIGJ1dHRvbjpkaXNhYmxlZCB7IG9wYWNpdHk6IDAuMzU7IGN1cnNvcjogZGVmYXVsdDsgfQoKICAgICAgICAvKiDilIDilIAg7IOB64uoIOuwlCDilIDilIAgKi8KICAgICAgICAudG9wLWJhciB7CiAgICAgICAgICAgIGJhY2tncm91bmQ6ICNmZmY7IGJvcmRlcjogMXB4IHNvbGlkICNlMGUwZTA7IGJvcmRlci1yYWRpdXM6IDEwcHg7CiAgICAgICAgICAgIHBhZGRpbmc6IDEwcHggMTJweDsgbWFyZ2luLWJvdHRvbTogMTBweDsKICAgICAgICAgICAgZGlzcGxheTogZmxleDsgZmxleC13cmFwOiB3cmFwOyBnYXA6IDZweDsgYWxpZ24taXRlbXM6IGNlbnRlcjsKICAgICAgICB9CiAgICAgICAgLmRyaXZlLXN0YXR1cyB7IGZvbnQtc2l6ZTogMTJweDsgY29sb3I6ICM4ODg7IGZsZXg6IDEgMSAxMDAlOyB9CiAgICAgICAgLmRyaXZlLXN0YXR1cy5vayAgeyBjb2xvcjogIzFhN2EzYzsgZm9udC13ZWlnaHQ6IDYwMDsgfQogICAgICAgIC5kcml2ZS1zdGF0dXMuZXJyIHsgY29sb3I6ICNjMDM5MmI7IGZvbnQtd2VpZ2h0OiA2MDA7IH0KICAgICAgICAudG9wLWJ0bnMgeyBkaXNwbGF5OiBmbGV4OyBmbGV4LXdyYXA6IHdyYXA7IGdhcDogNHB4OyB9CgogICAgICAgIC8qIOKUgOKUgCDtj4nqsIAg7JWM66a8IO2MqOuEkCDilIDilIAgKi8KICAgICAgICAuYWxlcnQtcGFuZWwgewogICAgICAgICAgICBiYWNrZ3JvdW5kOiAjZmZmOyBib3JkZXI6IDFweCBzb2xpZCAjZTBlMGUwOyBib3JkZXItcmFkaXVzOiAxMHB4OwogICAgICAgICAgICBwYWRkaW5nOiAxMnB4IDE0cHg7IG1hcmdpbi1ib3R0b206IDEwcHg7CiAgICAgICAgfQogICAgICAgIC5hbGVydC1wYW5lbC10aXRsZSB7IGZvbnQtc2l6ZTogMTNweDsgZm9udC13ZWlnaHQ6IDcwMDsgY29sb3I6ICMxYTFhMWE7IG1hcmdpbi1ib3R0b206IDhweDsgfQogICAgICAgIC5hbGVydC1lbXB0eSB7IGZvbnQtc2l6ZTogMTNweDsgY29sb3I6ICNhYWE7IH0KICAgICAgICAuYWxlcnQtY2hpcHMgeyBkaXNwbGF5OiBmbGV4OyBmbGV4LXdyYXA6IHdyYXA7IGdhcDogNnB4OyB9CiAgICAgICAgLmFsZXJ0LWNoaXAgewogICAgICAgICAgICBmb250LXNpemU6IDEycHg7IHBhZGRpbmc6IDRweCAxMHB4OyBib3JkZXItcmFkaXVzOiAxNnB4OwogICAgICAgICAgICBiYWNrZ3JvdW5kOiAjZmZmM2NkOyBib3JkZXI6IDFweCBzb2xpZCAjZmZjMTA3OyBjb2xvcjogIzdjNTUwMDsgZm9udC13ZWlnaHQ6IDYwMDsKICAgICAgICB9CiAgICAgICAgLmFsZXJ0LWNoaXAudXJnZW50IHsgYmFja2dyb3VuZDogI2ZkZThlODsgYm9yZGVyLWNvbG9yOiAjZTc0YzNjOyBjb2xvcjogIzkyMmIyMTsgfQoKICAgICAgICAvKiDilIDilIAg7IS57IWYIOKUgOKUgCAqLwogICAgICAgIC5zZWN0aW9uLWNvbnRhaW5lciB7IGJhY2tncm91bmQ6ICNmZmY7IGJvcmRlcjogMXB4IHNvbGlkICNlMGUwZTA7IGJvcmRlci1yYWRpdXM6IDEwcHg7IHBhZGRpbmc6IDEycHg7IG1hcmdpbi1ib3R0b206IDEwcHg7IH0KICAgICAgICAuc2VjdGlvbi1oZWFkZXIgeyBkaXNwbGF5OiBmbGV4OyBhbGlnbi1pdGVtczogY2VudGVyOyBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47IG1hcmdpbi1ib3R0b206IDEwcHg7IGZsZXgtd3JhcDogd3JhcDsgZ2FwOiA2cHg7IH0KICAgICAgICAuc2VjdGlvbi10aXRsZS1pbnB1dCB7IGZvbnQtc2l6ZTogMTdweDsgZm9udC13ZWlnaHQ6IDcwMDsgYm9yZGVyOiBub25lOyBiYWNrZ3JvdW5kOiB0cmFuc3BhcmVudDsgcGFkZGluZzogNHB4OyBjb2xvcjogIzFhMWExYTsgd2lkdGg6IDE0MHB4OyBmb250LWZhbWlseTogaW5oZXJpdDsgfQogICAgICAgIC5zZWN0aW9uLXRpdGxlLWlucHV0OmZvY3VzIHsgb3V0bGluZTogMnB4IHNvbGlkICMxYzFjMWU7IGJvcmRlci1yYWRpdXM6IDRweDsgYmFja2dyb3VuZDogI2ZmZjsgfQogICAgICAgIC5zZWN0aW9uLWJ0bnMgeyBkaXNwbGF5OiBmbGV4OyBmbGV4LXdyYXA6IHdyYXA7IGdhcDogNHB4OyB9CgogICAgICAgIC8qIOKUgOKUgCDsiJjqsJXsg50g7Lm065OcICjrqqjrsJTsnbwg7KSR7IusKSDilIDilIAgKi8KICAgICAgICAuc3R1ZGVudC1saXN0IHsgZGlzcGxheTogZmxleDsgZmxleC1kaXJlY3Rpb246IGNvbHVtbjsgZ2FwOiA4cHg7IH0KICAgICAgICAuc3R1ZGVudC1jYXJkIHsKICAgICAgICAgICAgYm9yZGVyOiAxcHggc29saWQgI2UwZTBlMDsgYm9yZGVyLXJhZGl1czogMTBweDsgcGFkZGluZzogMTBweCAxMnB4OwogICAgICAgICAgICBiYWNrZ3JvdW5kOiAjZmFmYWZhOyB0cmFuc2l0aW9uOiBib3JkZXItY29sb3IgMC4xNXM7CiAgICAgICAgfQogICAgICAgIC5zdHVkZW50LWNhcmQuZG9uZS1jYXJkIHsgYmFja2dyb3VuZDogI2YwZmZmNDsgYm9yZGVyLWNvbG9yOiAjYThkNWI1OyB9CgogICAgICAgIC8qIOy5tOuTnCDsg4Hri6g6IOydtOumhCArIO2PieqwgCDrsoTtirwgKi8KICAgICAgICAuY2FyZC10b3AgeyBkaXNwbGF5OiBmbGV4OyBhbGlnbi1pdGVtczogY2VudGVyOyBnYXA6IDhweDsgbWFyZ2luLWJvdHRvbTogOHB4OyBmbGV4LXdyYXA6IHdyYXA7IH0KICAgICAgICAuY2FyZC1uYW1lLWlucHV0IHsKICAgICAgICAgICAgZmxleDogMTsgbWluLXdpZHRoOiA4MHB4OyBib3JkZXI6IG5vbmU7IGJhY2tncm91bmQ6IHRyYW5zcGFyZW50OwogICAgICAgICAgICBmb250LXNpemU6IDE1cHg7IGZvbnQtd2VpZ2h0OiA3MDA7IGZvbnQtZmFtaWx5OiBpbmhlcml0OyBjb2xvcjogIzFhMWExYTsgcGFkZGluZzogMnB4IDRweDsKICAgICAgICB9CiAgICAgICAgLmNhcmQtbmFtZS1pbnB1dDpmb2N1cyB7IG91dGxpbmU6IDJweCBzb2xpZCAjMWMxYzFlOyBib3JkZXItcmFkaXVzOiA0cHg7IGJhY2tncm91bmQ6ICNmZmY7IH0KICAgICAgICAuY2FyZC1kb25lLWluZm8geyBkaXNwbGF5OiBmbGV4OyBhbGlnbi1pdGVtczogY2VudGVyOyBnYXA6IDZweDsgZmxleC13cmFwOiB3cmFwOyB9CiAgICAgICAgLmRvbmUtYmFkZ2UgeyBmb250LXNpemU6IDEycHg7IGNvbG9yOiAjMWE3YTNjOyBmb250LXdlaWdodDogNzAwOyBkaXNwbGF5OiBmbGV4OyBhbGlnbi1pdGVtczogY2VudGVyOyBnYXA6IDNweDsgfQogICAgICAgIC5kb25lLWJhZGdlOjpiZWZvcmUgeyBjb250ZW50OiAi4pyTIjsgZm9udC1zaXplOiAxM3B4OyB9CiAgICAgICAgLmRvbmUtZWxhcHNlZCB7IGZvbnQtc2l6ZTogMTFweDsgY29sb3I6ICM4ODg7IH0KCiAgICAgICAgLyog67OE7KCQIOq3uOumrOuTnCDigJQg64K07JqpIOuEiOu5hOyXkCDrp57qsowg7J6Q64+ZICovCiAgICAgICAgLnNjb3JlLWdyaWQgeyBkaXNwbGF5OiBmbGV4OyBmbGV4LXdyYXA6IHdyYXA7IGdhcDogNXB4OyBtYXJnaW4tYm90dG9tOiA4cHg7IH0KICAgICAgICAuc2NvcmUtaXRlbSB7IGRpc3BsYXk6IGZsZXg7IGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47IHdpZHRoOiBhdXRvOyB9CiAgICAgICAgLnNjb3JlLWxhYmVsIHsgZm9udC1zaXplOiAxMXB4OyBjb2xvcjogIzg4ODsgbWFyZ2luLWJvdHRvbTogMnB4OyBmb250LXdlaWdodDogNjAwOyB3aGl0ZS1zcGFjZTogbm93cmFwOyB9CiAgICAgICAgLnNjb3JlLXNlbGVjdCB7CiAgICAgICAgICAgIGJvcmRlcjogMXB4IHNvbGlkICNkMWQxZDE7IGJvcmRlci1yYWRpdXM6IDZweDsgcGFkZGluZzogNXB4IDRweDsKICAgICAgICAgICAgZm9udC1zaXplOiAxM3B4OyBiYWNrZ3JvdW5kOiAjZmZmOyBjb2xvcjogIzFhMWExYTsgZm9udC1mYW1pbHk6IGluaGVyaXQ7IGN1cnNvcjogcG9pbnRlcjsKICAgICAgICAgICAgd2lkdGg6IGF1dG87CiAgICAgICAgfQogICAgICAgIC5zY29yZS1zZWxlY3Q6Zm9jdXMgeyBvdXRsaW5lOiAycHggc29saWQgIzFjMWMxZTsgfQoKICAgICAgICAvKiDsubTrk5wg7ZWY64uoIOuyhO2KvOykhCAqLwogICAgICAgIC5jYXJkLWFjdGlvbnMgeyBkaXNwbGF5OiBmbGV4OyBnYXA6IDRweDsgZmxleC13cmFwOiB3cmFwOyBtYXJnaW4tdG9wOiA0cHg7IH0KCiAgICAgICAgLyog4pSA4pSAIOykkeuLqCDrs7TqtIDtlagg4pSA4pSAICovCiAgICAgICAgLnN0b3BwZWQtZGV0YWlscyB7IG1hcmdpbi10b3A6IDEwcHg7IH0KICAgICAgICAuc3RvcHBlZC1zdW1tYXJ5IHsKICAgICAgICAgICAgZm9udC1zaXplOiAxM3B4OyBmb250LXdlaWdodDogNjAwOyBjb2xvcjogIzg4ODsgY3Vyc29yOiBwb2ludGVyOwogICAgICAgICAgICBvdXRsaW5lOiBub25lOyB1c2VyLXNlbGVjdDogbm9uZTsgcGFkZGluZzogNnB4IDA7CiAgICAgICAgfQogICAgICAgIGRldGFpbHNbb3Blbl0gLnN0b3BwZWQtc3VtbWFyeSB7IGNvbG9yOiAjMWExYTFhOyBtYXJnaW4tYm90dG9tOiA4cHg7IH0KCiAgICAgICAgLyog7KSR64uoIOy5tOuTnDog642UIOyekeqzoCDtnZDrpqzqsowgKi8KICAgICAgICAuc3RvcHBlZC1saXN0IC5zdHVkZW50LWNhcmQgeyBwYWRkaW5nOiA2cHggMTBweDsgYm9yZGVyLXJhZGl1czogOHB4OyBiYWNrZ3JvdW5kOiAjZjVmNWY1OyBib3JkZXItY29sb3I6ICNlOGU4ZTg7IH0KICAgICAgICAuc3RvcHBlZC1saXN0IC5jYXJkLW5hbWUtaW5wdXQgeyBmb250LXNpemU6IDEzcHg7IH0KICAgICAgICAuc3RvcHBlZC1saXN0IC5zY29yZS1sYWJlbCB7IGZvbnQtc2l6ZTogMTBweDsgfQogICAgICAgIC5zdG9wcGVkLWxpc3QgLnNjb3JlLXNlbGVjdCB7IGZvbnQtc2l6ZTogMTJweDsgcGFkZGluZzogM3B4IDNweDsgfQogICAgICAgIC5zdG9wcGVkLWxpc3QgLmNhcmQtdG9wIHsgbWFyZ2luLWJvdHRvbTogNHB4OyB9CiAgICAgICAgLnN0b3BwZWQtbGlzdCAuc2NvcmUtZ3JpZCB7IGdhcDogNHB4OyBtYXJnaW4tYm90dG9tOiA0cHg7IH0KICAgICAgICAuc3RvcHBlZC1saXN0IGJ1dHRvbi5zbSB7IGZvbnQtc2l6ZTogMTFweDsgcGFkZGluZzogM3B4IDhweDsgfQoKICAgICAgICAvKiDilIDilIAg66qo64usIOKUgOKUgCAqLwogICAgICAgIC5tb2RhbC1vdmVybGF5IHsgZGlzcGxheTogbm9uZTsgcG9zaXRpb246IGZpeGVkOyBpbnNldDogMDsgYmFja2dyb3VuZDogcmdiYSgwLDAsMCwwLjQ1KTsgei1pbmRleDogMTAwMDsganVzdGlmeS1jb250ZW50OiBjZW50ZXI7IGFsaWduLWl0ZW1zOiBmbGV4LWVuZDsgfQogICAgICAgIEBtZWRpYSAobWluLXdpZHRoOiA2MDBweCkgeyAubW9kYWwtb3ZlcmxheSB7IGFsaWduLWl0ZW1zOiBjZW50ZXI7IH0gfQogICAgICAgIC5tb2RhbC1jb250ZW50IHsKICAgICAgICAgICAgYmFja2dyb3VuZDogI2ZmZjsgcGFkZGluZzogMjBweDsgYm9yZGVyLXJhZGl1czogMTZweCAxNnB4IDAgMDsgd2lkdGg6IDEwMCU7CiAgICAgICAgICAgIG1heC13aWR0aDogNTYwcHg7IG1heC1oZWlnaHQ6IDkydmg7IG92ZXJmbG93LXk6IGF1dG87CiAgICAgICAgICAgIGJveC1zaGFkb3c6IDAgLTRweCAzMHB4IHJnYmEoMCwwLDAsMC4xNSk7CiAgICAgICAgfQogICAgICAgIEBtZWRpYSAobWluLXdpZHRoOiA2MDBweCkgeyAubW9kYWwtY29udGVudCB7IGJvcmRlci1yYWRpdXM6IDE0cHg7IH0gfQogICAgICAgIC5tb2RhbC10aXRsZSB7IGZvbnQtc2l6ZTogMTZweDsgZm9udC13ZWlnaHQ6IDcwMDsgbWFyZ2luLWJvdHRvbTogMTRweDsgY29sb3I6ICMxYTFhMWE7IH0KICAgICAgICAubW9kYWwtdGV4dGFyZWEgewogICAgICAgICAgICB3aWR0aDogMTAwJTsgcGFkZGluZzogMTBweDsgYm9yZGVyOiAxcHggc29saWQgI2QxZDFkMTsgYm9yZGVyLXJhZGl1czogOHB4OwogICAgICAgICAgICBmb250LXNpemU6IDE0cHg7IG1hcmdpbi1ib3R0b206IDEwcHg7IGZvbnQtZmFtaWx5OiBpbmhlcml0OyBoZWlnaHQ6IDEyMHB4OyByZXNpemU6IHZlcnRpY2FsOwogICAgICAgIH0KICAgICAgICAubW9kYWwtc2VsZWN0LWlucHV0IHsgd2lkdGg6IDEwMCU7IHBhZGRpbmc6IDlweCAxMHB4OyBib3JkZXI6IDFweCBzb2xpZCAjZDFkMWQxOyBib3JkZXItcmFkaXVzOiA4cHg7IGZvbnQtc2l6ZTogMTRweDsgbWFyZ2luLWJvdHRvbTogMTBweDsgZm9udC1mYW1pbHk6IGluaGVyaXQ7IGNvbG9yOiAjMWExYTFhOyB9CiAgICAgICAgLm1vZGFsLWFjdGlvbnMgeyBkaXNwbGF5OiBmbGV4OyBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtZW5kOyBnYXA6IDhweDsgbWFyZ2luLXRvcDogMTBweDsgfQoKICAgICAgICAvKiDilIDilIAg67mg66W4IOyeheugpSDilIDilIAgKi8KICAgICAgICAucXVpY2stc2VjdGlvbiB7IG1hcmdpbi1ib3R0b206IDEycHg7IH0KICAgICAgICAucXVpY2stbGFiZWwgeyBmb250LXNpemU6IDEycHg7IGNvbG9yOiAjODg4OyBtYXJnaW4tYm90dG9tOiA4cHg7IGRpc3BsYXk6IGZsZXg7IGFsaWduLWl0ZW1zOiBjZW50ZXI7IGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjsgfQogICAgICAgIC5xdWljay1jaGlwcyB7IGRpc3BsYXk6IGZsZXg7IGZsZXgtd3JhcDogd3JhcDsgZ2FwOiA2cHg7IH0KICAgICAgICAuY2hpcC13cmFwIHsgZGlzcGxheTogaW5saW5lLWZsZXg7IGFsaWduLWl0ZW1zOiBjZW50ZXI7IGdhcDogM3B4OyB9CiAgICAgICAgLmNoaXAtdGV4dCB7IGZvbnQtc2l6ZTogMTNweDsgcGFkZGluZzogNnB4IDEycHg7IGJhY2tncm91bmQ6ICNmMmYyZjc7IGJvcmRlcjogMXB4IHNvbGlkICNkMWQxZDE7IGJvcmRlci1yYWRpdXM6IDE4cHg7IGN1cnNvcjogcG9pbnRlcjsgY29sb3I6ICMxYTFhMWE7IH0KICAgICAgICAuY2hpcC10ZXh0OmhvdmVyIHsgYmFja2dyb3VuZDogI2U4ZThlZDsgfQogICAgICAgIC5jaGlwLWVkaXQtaW5wdXQgeyBmb250LXNpemU6IDEycHg7IHBhZGRpbmc6IDRweCA5cHg7IGJvcmRlcjogMXB4IHNvbGlkICMxYzFjMWU7IGJvcmRlci1yYWRpdXM6IDE2cHg7IHdpZHRoOiAxMTBweDsgZm9udC1mYW1pbHk6IGluaGVyaXQ7IH0KICAgICAgICAuY2hpcC1kZWwgeyBmb250LXNpemU6IDExcHg7IHBhZGRpbmc6IDNweCA3cHg7IGJhY2tncm91bmQ6ICNmZmY7IGNvbG9yOiAjYzAzOTJiOyBib3JkZXI6IDFweCBzb2xpZCAjZTBiMGIwOyBib3JkZXItcmFkaXVzOiAxMHB4OyBjdXJzb3I6IHBvaW50ZXI7IH0KICAgICAgICAucXVpY2stYWRkLXJvdyB7IGRpc3BsYXk6IGZsZXg7IGdhcDogNnB4OyBtYXJnaW4tdG9wOiA4cHg7IH0KICAgICAgICAucXVpY2stYWRkLWlucHV0IHsgZmxleDogMTsgcGFkZGluZzogN3B4IDEwcHg7IGJvcmRlcjogMXB4IHNvbGlkICNkMWQxZDE7IGJvcmRlci1yYWRpdXM6IDhweDsgZm9udC1zaXplOiAxM3B4OyBmb250LWZhbWlseTogaW5oZXJpdDsgfQoKICAgICAgICAvKiDilIDilIAg7Lus65+8IOyInOyEnCDilIDilIAgKi8KICAgICAgICAuY29sLW9yZGVyLWxpc3QgeyBsaXN0LXN0eWxlOiBub25lOyBwYWRkaW5nOiAwOyBtYXJnaW46IDAgMCAxNHB4IDA7IH0KICAgICAgICAuY29sLW9yZGVyLWl0ZW0geyBkaXNwbGF5OiBmbGV4OyBhbGlnbi1pdGVtczogY2VudGVyOyBnYXA6IDhweDsgcGFkZGluZzogOXB4IDEycHg7IGJhY2tncm91bmQ6ICNmOGY4Zjg7IGJvcmRlcjogMXB4IHNvbGlkICNlMGUwZTA7IGJvcmRlci1yYWRpdXM6IDhweDsgbWFyZ2luLWJvdHRvbTogNnB4OyBmb250LXNpemU6IDE0cHg7IH0KICAgICAgICAuY29sLW9yZGVyLW5hbWUgeyBmbGV4OiAxOyB9CgogICAgICAgIC8qIOKUgOKUgCDstpzshJ3rtoAg4pSA4pSAICovCiAgICAgICAgLmF0dGVuZC1iYXIgeyBiYWNrZ3JvdW5kOiAjZmZmOyBib3JkZXI6IDFweCBzb2xpZCAjZTBlMGUwOyBib3JkZXItcmFkaXVzOiAxMHB4OyBwYWRkaW5nOiAxMnB4IDE0cHg7IG1hcmdpbi1ib3R0b206IDEwcHg7IGRpc3BsYXk6IGZsZXg7IGFsaWduLWl0ZW1zOiBjZW50ZXI7IGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjsgZ2FwOiA4cHg7IGZsZXgtd3JhcDogd3JhcDsgfQogICAgICAgIC5hdHRlbmQtYmFyLXRpdGxlIHsgZm9udC1zaXplOiAxNXB4OyBmb250LXdlaWdodDogNzAwOyBjb2xvcjogIzFhMWExYTsgfQoKICAgICAgICAvKiBQQ+yXkOyEnCDrhJPsnYAg7ZmU66m0IOuMgOydkSAqLwogICAgICAgIEBtZWRpYSAobWluLXdpZHRoOiA5MDBweCkgewogICAgICAgICAgICBib2R5IHsgcGFkZGluZzogMjBweDsgbWF4LXdpZHRoOiA5NjBweDsgbWFyZ2luOiAwIGF1dG87IH0KICAgICAgICB9CgogICAgICAgICNsb2dpbkdhdGV7cG9zaXRpb246Zml4ZWQ7aW5zZXQ6MDt6LWluZGV4Ojk5OTk7YmFja2dyb3VuZDojZjJmMmY3O2Rpc3BsYXk6ZmxleDtmbGV4LWRpcmVjdGlvbjpjb2x1bW47YWxpZ24taXRlbXM6Y2VudGVyO2p1c3RpZnktY29udGVudDpjZW50ZXI7Z2FwOjE2cHg7fQojYXBwQ29udGVudHtkaXNwbGF5Om5vbmU7fQogICAg"></span>#loginGate {
+            position: fixed !important;
+            inset: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 9999;
+            background: #f2f2f7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        #appContent {
+            display: none !important;
+        }
+    </style>
+    <script>function _d(b) { return decodeURIComponent(escape(atob(b))) } document.addEventListener("DOMContentLoaded", function () { document.querySelectorAll("[data-t]").forEach(function (el) { el.outerHTML = _d(el.getAttribute("data-t")) }); document.querySelectorAll("[data-ph]").forEach(function (el) { el.placeholder = _d(el.getAttribute("data-ph")) }); });</script>
+</head>
+
+<body>
+
+
+
+    <div id="loginGate"
+        style="position:fixed;inset:0;top:0;left:0;right:0;bottom:0;width:100%;height:100%;z-index:9999;background:#f2f2f7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;">
+        <h2><span data-t="8J+UkiDroZzqt7jsnbgg7ZWE7JqU"></span></h2>
+        <p><span data-t="6rWs6riAIOqzhOygleycvOuhnCDroZzqt7jsnbjtlZjrqbQg7J207Jqp7ZWgIOyImCDsnojsirXri4jri6Qu"></span>
+        </p>
+        <button class="primary" onclick="driveLogin()" style="padding:12px 28px;font-size:15px;"><span
+                data-t="6rWs6riAIOuhnOq3uOyduA=="></span></button>
+    </div>
+
+
+    <div id="appContent" style="display:none">
+
+
+        <div class="tb">
+            <div class="ds" id="driveStatus"><span data-t="7Jew6rKw65Co"></span></div>
+            <div class="tbt">
+                <button id="btnDriveSave" onclick="driveSave()" class="sm"><span
+                        data-t="65Oc65287J2067iMIOyggOyepQ=="></span></button>
+                <button id="btnDriveLoad" onclick="driveLoad()" class="sm"><span
+                        data-t="65Oc65287J2067iMIOu2iOufrOyYpOq4sA=="></span></button>
+                <button id="btnDriveLogout" onclick="driveLogout()" class="muted sm"><span
+                        data-t="66Gc6re47JWE7JuD"></span></button>
+                <button onclick="exportToFile()" class="muted sm"><span
+                        data-t="67Cx7JeFIOuLpOyatOuhnOuTnA=="></span></button>
+                <label class="btn-file sm"><span data-t="67Cx7JeFIOu2iOufrOyYpOq4sA=="></span><input type="file"
+                        id="fileInput" accept=".json" style="display:none" onchange="importFromFile(event)"></label>
+            </div>
+        </div>
+
+
+        <div class="ap" id="alertPanel">
+            <div class="apt"><span data-t="7Y+J6rCAIO2VhOyalA=="></span></div>
+            <div id="alertContent" class="ae"><span
+                    data-t="7Y+J6rCAIOq4sO2VnOydtCDri6TqsIDsmKTripQg7IiY6rCV7IOd7J20IOyXhuyKteuLiOuLpC4="></span></div>
+        </div>
+
+        <div id="sectionA" class="sec-c"></div>
+        <div id="sectionB" class="sec-c"></div>
+
+
+        <div class="ab">
+            <span class="abt"><span data-t="7Lac7ISd67aA"></span></span>
+            <button class="primary sm"
+                onclick="window.open('https://staff.koreagroupware.com/login.asp','attendPopup','width=1100,height=750,scrollbars=yes,resizable=yes')"><span
+                    data-t="7Lac7ISd67aAIOyXtOq4sA=="></span></button>
+        </div>
+
+        <textarea id="clipboardArea" style="position:absolute;left:-9999px;"></textarea>
+
+    </div>
+
+
+    <div id="dm" style="display:none" class="mo2">
+        <div class="mc2">
+            <div class="mt" id="modalTitle"><span data-t="7IOB7IS4IOuCtOyaqSDsnpHshLE="></span></div>
+            <div class="qs">
+                <div class="ql">
+                    <span><span data-t="67mg66W4IOyeheugpQ=="></span></span>
+                    <button class="muted sm" onclick="toggleQuickEdit()" id="btnQuickEdit"><span
+                            data-t="7Y647KeR"></span></button>
+                </div>
+                <div class="qc" id="quickChips"></div>
+                <div class="qar" id="quickAddRow" style="display:none">
+                    <input type="text" class="qai" id="quickAddInput" data-ph="7IOIIO2VreuqqSDsnoXroKUuLi4=">
+                    <button onclick="addQuickChip()" class="primary sm"><span data-t="7LaU6rCA"></span></button>
+                </div>
+            </div>
+            <textarea id="modalTextarea" class="mta"
+                data-ph="7IOB7IS4IOuCtOyaqeydhCDsnpDsnKDroa3qsowg7J6R7ISx7ZWY7IS47JqULi4u"></textarea>
+            <div class="mas">
+                <button onclick="closeModal()" class="muted"><span data-t="7Leo7IaM"></span></button>
+                <button onclick="saveModalData()" class="primary"><span data-t="7KCA7J6l"></span></button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="cx" style="display:none" class="mo2">
+        <div class="mc2">
+            <div class="mt"><span data-t="7Y+J6rCAIO2VreuqqSDsgq3soJw="></span></div>
+            <p style="font-size:13px;color:#555;margin-bottom:10px;"><span
+                    data-t="7IKt7KCc7ZWgIO2VreuqqeydhCDshKDtg53tlZjshLjsmpQu"></span></p>
+            <div id="deleteColSelectContainer"></div>
+            <div class="mas" style="margin-top:16px;">
+                <button onclick="closeDeleteColModal()" class="muted"><span data-t="7Leo7IaM"></span></button>
+                <button onclick="confirmDeleteCol()" class="danger"><span data-t="7IKt7KCc"></span></button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="cy" style="display:none" class="mo2">
+        <div class="mc2">
+            <div class="mt"><span data-t="7Y+J6rCAIO2VreuqqSDsiJzshJwg67OA6rK9"></span></div>
+            <p style="font-size:13px;color:#aaa;margin-bottom:12px;"><span
+                    data-t="4payIOKWvCDrsoTtirzsnLzroZwg7Iic7ISc66W8IOuwlOq+uOyEuOyalC4gQcK3QiDqsJXsnZjsnqUg66qo65GQIOyggeyaqeuQqeuLiOuLpC4="></span>
+            </p>
+            <ul class="col" id="colOrderList"></ul>
+            <div class="mas">
+                <button onclick="closeColOrderModal()" class="muted"><span data-t="7Leo7IaM"></span></button>
+                <button onclick="saveColOrder()" class="primary"><span data-t="7KCA7J6l"></span></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+
+
+        let va = {
+            A: {
+                title: _d("QeqwleydmOyepQ=="), hd: [_d("6riw67O46riwIOuKpeugpQ=="), _d("7LC97J2Y7KCBIOqwkOqwgQ=="), _d("7LGE7IOJIOuKpeugpQ=="), _d("7J2464K0L+uBiOq4sA=="), _d("7ISx7Iuk7ZWo"), _d("7J6Q7LK07KCBIOyerOuKpQ==")],
+                rw: [{ name: "", xs: [0, 0, 0, 0, 0, 0], dt: "", dd: "" }], sr: []
+            },
+            B: {
+                title: _d("QuqwleydmOyepQ=="), hd: [_d("6riw67O46riwIOuKpeugpQ=="), _d("7LC97J2Y7KCBIOqwkOqwgQ=="), _d("7LGE7IOJIOuKpeugpQ=="), _d("7J2464K0L+uBiOq4sA=="), _d("7ISx7Iuk7ZWo"), _d("7J6Q7LK07KCBIOyerOuKpQ==")],
+                rw: [{ name: "", xs: [0, 0, 0, 0, 0, 0], dt: "", dd: "" }], sr: []
+            },
+            dh: _d("7IOB7IS4IOuCtOyaqQ==")
+        };
+        let state = JSON.parse(JSON.stringify(va));
+        let vb = { A: false, B: false };
+        let vc = { section: null, idx: null, isStopped: false };
+        let vd = [];
+        let ve = false;
+
+
+
+
+        function mk() {
+
+            let now = new Date();
+            let kst = new Date(now.getTime() + 9 * 60 * 60 * 1000);
+            return new Date(kst.toISOString().slice(0, 10));
+        }
+        function mj() {
+            let d = mk();
+            let yy = String(d.getFullYear()).slice(2);
+            let mm = String(d.getMonth() + 1).padStart(2, '0');
+            let dd = String(d.getDate()).padStart(2, '0');
+            return `${yy}/${mm}/${dd}`;
+        }
+        function mn(str) {
+
+            if (!str) return null;
+            let [yy, mm, dd] = str.split('/');
+            return new Date(2000 + parseInt(yy), parseInt(mm) - 1, parseInt(dd));
+        }
+        function ml(dd) {
+            if (!dd) return null;
+            let d = mn(dd);
+            if (!d) return null;
+            let today = mk();
+            return Math.floor((today - d) / (1000 * 60 * 60 * 24));
+        }
+        function mm(dd) {
+
+            let elapsed = ml(dd);
+            if (elapsed === null) return null;
+            return 30 - elapsed;
+        }
+
+
+
+
+        function mc() {
+            let chips = [];
+            ['A', 'B'].forEach(sec => {
+                let allRows = [...state[sec].rw];
+                allRows.forEach(row => {
+                    if (!row.dd) return;
+                    let left = mm(row.dd);
+                    if (left === null) return;
+                    if (left <= 7 && left >= -3) {
+                        let name = row.name.trim() || _d("7J2066aEIOuvuOyDgQ==");
+                        let label = left >= 0 ? `D-${left}` : `D+${Math.abs(left)}`;
+                        let urgent = left <= 2;
+                        chips.push({ name, label, urgent });
+                    }
+                });
+            });
+
+            let el = document.getElementById('alertContent');
+            if (chips.length === 0) {
+                el.className = 'ae';
+                el.innerHTML = _d("7Y+J6rCAIOq4sO2VnOydtCDri6TqsIDsmKTripQg7IiY6rCV7IOd7J20IOyXhuyKteuLiOuLpC4=");
+            } else {
+                el.className = 'ach';
+                el.innerHTML = chips.map(c =>
+                    `<span class="ac${c.urgent ? ' urgent' : ''}">${c.name} (${c.label})</span>`
+                ).join('');
+            }
+        }
+
+
+
+
+        const vj = "xq72m";
+        let vf = JSON.parse(localStorage.getItem(vj) || "null") || [
+            _d("7ISx7Iuk7ZWY6rKMIOywuOyXrA=="), _d("6riw67O46riwIOyasOyImA=="), _d("7LC97J2Y7ISxIOuPi+uztOyehA=="), _d("6r647KSA7ZWcIOuwnOyghA=="), _d("7KeR7KSR66ClIO2VhOyalA=="), _d("7LaU6rCAIOyXsOyKtSDqtozsnqU=")
+        ];
+        function mg() { localStorage.setItem(vj, JSON.stringify(vf)); }
+
+        function md() {
+            let area = document.getElementById("vf");
+            area.innerHTML = "";
+            vf.forEach((text, i) => {
+                let wrap = document.createElement("span");
+                wrap.className = "cw";
+                if (ve) {
+                    let inp = document.createElement("input");
+                    inp.type = "text"; inp.className = "cei"; inp.value = text;
+                    inp.onchange = () => { vf[i] = inp.value.trim() || text; mg(); };
+                    let del = document.createElement("button");
+                    del.className = "chd"; del.textContent = _d("7IKt7KCc");
+                    del.onclick = () => { vf.splice(i, 1); mg(); md(); };
+                    wrap.appendChild(inp); wrap.appendChild(del);
+                } else {
+                    let chip = document.createElement("span");
+                    chip.className = "cht"; chip.textContent = text;
+                    chip.onclick = () => {
+                        let ta = document.getElementById("modalTextarea");
+                        ta.value = (ta.value ? ta.value + "\n" : "") + text;
+                    };
+                    wrap.appendChild(chip);
+                }
+                area.appendChild(wrap);
+            });
+        }
+        function me() {
+            ve = !ve;
+            document.getElementById("btnQuickEdit").textContent = ve ? _d("7JmE66OM") : _d("7Y647KeR");
+            document.getElementById("quickAddRow").style.display = ve ? "flex" : "none";
+            md();
+        }
+        function mf() {
+            let v = document.getElementById("quickAddInput").value.trim();
+            if (!v) return;
+            vf.push(v); mg();
+            document.getElementById("quickAddInput").value = "";
+            md();
+        }
+
+
+
+
+        function mh(x) {
+            if (x == 0) return _d("7ISg7YOd");
+            return '★'.repeat(Math.floor(x / 2)) + (x % 2 ? '½' : '');
+        }
+        function mi(x) {
+            if (x == 0) return _d("7Y+J6rCAIOyViCDrkKg=");
+            return '★'.repeat(Math.floor(x / 2)) + (x % 2 ? '½' : '');
+        }
+
+
+
+
+        function ma() {
+            let maxCols = Math.max(state.A.hd.length, state.B.hd.length);
+            let base = state.A.hd.length >= state.B.hd.length ? state.A.hd : state.B.hd;
+            ['A', 'B'].forEach(sec => {
+                while (state[sec].hd.length < maxCols) {
+                    state[sec].hd.push(base[state[sec].hd.length] || _d("7IOIIO2VreuqqQ=="));
+                    state[sec].rw.forEach(r => r.xs.push(0));
+                    state[sec].sr.forEach(r => r.xs.push(0));
+                }
+                state[sec].hd = [...base];
+                state[sec].rw.forEach(r => { if (!r.dd) r.dd = ""; });
+                state[sec].sr.forEach(r => { if (!r.dd) r.dd = ""; });
+            });
+            if (!state.dh) state.dh = _d("7IOB7IS4IOuCtOyaqQ==");
+        }
+        function la() {
+            let saved = localStorage.getItem('xd91k');
+            if (saved) {
+                let p = JSON.parse(saved);
+                if (!p.A.sr) p.A.sr = [];
+                if (!p.B.sr) p.B.sr = [];
+                state = p; ma();
+            }
+            lc();
+        }
+        function lb() { localStorage.setItem('xd91k', JSON.stringify(state)); }
+
+
+
+
+        function lf(sec) {
+            state[sec].rw.push({ name: "", xs: new Array(state[sec].hd.length).fill(0), dt: "", dd: "" });
+            lb(); lc();
+        }
+        function lg(sec, idx) {
+            if (confirm(_d("7J20IOyImOqwleyDneydhCDspJHri6gg67O06rSA7ZWo7Jy866GcIOydtOuPmeyLnO2CpOqyoOyKteuLiOq5jD8="))) {
+                state[sec].sr.push(state[sec].rw.splice(idx, 1)[0]);
+
+                lb(); lc();
+            }
+        }
+        function lh(sec, idx) {
+            if (confirm(_d("67O16rWs7ZWY7Iuc6rKg7Iq164uI6rmMPw=="))) {
+                state[sec].rw.push(state[sec].sr.splice(idx, 1)[0]);
+                lb(); lc();
+            }
+        }
+        function li(sec, idx) {
+            if (confirm(_d("7JmE7KCE7Z6IIOyCreygnO2VmOyLnOqyoOyKteuLiOq5jD8gKOuzteq1rCDrtojqsIAp"))) {
+                state[sec].sr.splice(idx, 1); lb(); lc();
+            }
+        }
+
+
+
+
+        function lj(sec, idx, isStopped) {
+            let arr = isStopped ? state[sec].sr : state[sec].rw;
+            if (arr[idx].dd) {
+                if (!confirm(_d("7J2066+4IO2PieqwgOyZhOujjCDsspjrpqzrkJjslrQg7J6I7Iq164uI64ukLiDsmKTripgg64Kg7Kec66GcIOuLpOyLnCDshKTsoJXtlaDquYzsmpQ/"))) return;
+            }
+            arr[idx].dd = mj();
+            lb(); lc();
+        }
+        function lk(sec, idx, isStopped) {
+            let arr = isStopped ? state[sec].sr : state[sec].rw;
+            arr[idx].dd = "";
+            lb(); lc();
+        }
+
+
+
+
+        function lp() {
+            let name = `7Y+J6rCA7ZWt66qp${state.A.hd.length + 1}`;
+            state.A.hd.push(name); state.B.hd.push(name);
+            ['A', 'B'].forEach(sec => {
+                state[sec].rw.forEach(r => r.xs.push(0));
+                state[sec].sr.forEach(r => r.xs.push(0));
+            });
+            lb(); lc();
+        }
+        function lq() {
+            let html = '<select id="colToDelete" class="msi" style="color:#1a1a1a;">';
+            state.A.hd.forEach((h, i) => { html += `<option value="${i}">${h}</option>`; });
+            html += '</select>';
+            document.getElementById('deleteColSelectContainer').innerHTML = html;
+            document.getElementById('cx').style.display = 'flex';
+        }
+        function lr() { document.getElementById('cx').style.display = 'none'; }
+        function ls() {
+            let idx = parseInt(document.getElementById('colToDelete').value);
+            if (confirm(`[ ${state.A.hd[idx]} ] ${_d("7ZWt66qp7J2EIOyCreygnO2VmOyLnOqyoOyKteuLiOq5jD8=")}`)) {
+                state.A.hd.splice(idx, 1); state.B.hd.splice(idx, 1);
+                ['A', 'B'].forEach(sec => {
+                    state[sec].rw.forEach(r => r.xs.splice(idx, 1));
+                    state[sec].sr.forEach(r => r.xs.splice(idx, 1));
+                });
+                lb(); lc(); lr();
+            }
+        }
+        function lt() {
+            vd = [...state.A.hd];
+            lv();
+            document.getElementById('cy').style.display = 'flex';
+        }
+        function lu() { document.getElementById('cy').style.display = 'none'; }
+        function lv() {
+            let ul = document.getElementById('colOrderList');
+            ul.innerHTML = "";
+            vd.forEach((name, i) => {
+                let li = document.createElement('li');
+                li.className = 'coi';
+                li.innerHTML = `<span class="con">${i + 1}. ${name}</span>
+            <button class="sm" onclick="lw(${i},-1)" ${i === 0 ? 'disabled' : ''}>▲</button>
+            <button class="sm" onclick="lw(${i},1)"  ${i === vd.length - 1 ? 'disabled' : ''}>▼</button>`;
+                ul.appendChild(li);
+            });
+        }
+        function lw(idx, dir) {
+            let n = idx + dir;
+            if (n < 0 || n >= vd.length) return;
+            [vd[idx], vd[n]] = [vd[n], vd[idx]];
+            lv();
+        }
+        function lx() {
+            let old = [...state.A.hd];
+            let order = vd.map(name => old.indexOf(name));
+            ['A', 'B'].forEach(sec => {
+                state[sec].hd = order.map(i => old[i]);
+                state[sec].rw.forEach(r => { r.xs = order.map(i => r.xs[i]); });
+                state[sec].sr.forEach(r => { r.xs = order.map(i => r.xs[i]); });
+            });
+            lb(); lc(); lu();
+        }
+
+
+
+
+        function ly() {
+            let a = document.createElement('a');
+            a.setAttribute("href", "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(state)));
+            a.setAttribute("download", _d("c3luYy5kYXQ="));
+            document.body.appendChild(a); a.click(); a.remove();
+        }
+        function lz(e) {
+            let file = e.target.files[0]; if (!file) return;
+            let reader = new FileReader();
+            reader.onload = function (ev) {
+                try {
+                    let p = JSON.parse(ev.target.result);
+                    if (!p.A.sr) p.A.sr = [];
+                    if (!p.B.sr) p.B.sr = [];
+                    state = p; ma(); lb(); lc(); alert(_d("67aI65+s7Jik6riwIOyZhOujjCE="));
+                } catch { alert(_d("7YyM7J28IOyYpOulmA==")); }
+                e.target.value = '';
+            };
+            reader.readAsText(file);
+        }
+
+
+
+
+        function ll(sec, idx, isStopped) {
+            let row = (isStopped ? state[sec].sr : state[sec].rw)[idx];
+            let name = row.name.trim() || _d("7J2066aEIOuvuOyDgQ==");
+            let text = `${_d("7J2066aE")} : ${name}\n`;
+            state[sec].hd.forEach((h, i) => { text += `${h} : ${mi(row.xs[i])}\n`; });
+            text += `\n+ ${state.dh} :\n${row.dt || _d("64K07JqpIOyXhuydjA==")}\n`;
+            let ta = document.getElementById('clipboardArea');
+            ta.value = text; ta.select(); document.execCommand('copy');
+            alert(`[${name}] ${_d("67O17IKsIOyZhOujjCE=")}`);
+        }
+
+
+
+
+        function lm(sec, idx, isStopped) {
+            vc = { section: sec, idx, isStopped };
+            let row = (isStopped ? state[sec].sr : state[sec].rw)[idx];
+            document.getElementById('modalTitle').innerText = `[${row.name.trim() || _d("7J2066aEIOuvuOyDgQ==")}] ${state.dh}`;
+            document.getElementById('modalTextarea').value = row.dt;
+            ve = false;
+            document.getElementById("btnQuickEdit").textContent = _d("7Y647KeR");
+            document.getElementById("quickAddRow").style.display = "none";
+            md();
+            document.getElementById('dm').style.display = 'flex';
+        }
+        function ln() { document.getElementById('dm').style.display = 'none'; }
+        function lo() {
+            let t = vc;
+            let arr = t.isStopped ? state[t.section].sr : state[t.section].rw;
+            arr[t.idx].dt = document.getElementById('modalTextarea').value;
+            lb(); ln(); lc();
+        }
+        function mb(key, open) { vb[key] = open; }
+
+
+
+
+        function le(sec, row, idx, isStopped) {
+            let isDone = !!row.dd;
+            let elapsed = ml(row.dd);
+
+            let card = document.createElement('div');
+            card.className = 'sc' + (isDone ? ' dc' : '');
+
+
+            let top = document.createElement('div');
+            top.className = 'ct';
+
+            let nameInp = document.createElement('input');
+            nameInp.type = 'text'; nameInp.className = 'cn';
+            nameInp.placeholder = _d("7J2066aE"); nameInp.value = row.name;
+            nameInp.dataset.sec = sec; nameInp.dataset.idx = idx;
+            nameInp.dataset.type = isStopped ? 'stopped' : 'active'; nameInp.dataset.field = 'name';
+            top.appendChild(nameInp);
+
+            if (isDone) {
+                let info = document.createElement('div');
+                info.className = 'cd';
+                let badge = document.createElement('span');
+                badge.className = 'db';
+                badge.innerHTML = ` ${row.dd}`;
+                let days = document.createElement('span');
+                days.className = 'de';
+                days.textContent = elapsed !== null ? `- ${elapsed}${_d("7J28IOqyveqzvA==")}` : '';
+                let cancelBtn = document.createElement('button');
+                cancelBtn.className = 'sm muted'; cancelBtn.textContent = _d("7Leo7IaM");
+                cancelBtn.onclick = () => lk(sec, idx, isStopped);
+                info.appendChild(badge); info.appendChild(days); info.appendChild(cancelBtn);
+                top.appendChild(info);
+            } else {
+                let doneBtn = document.createElement('button');
+                doneBtn.className = 'sm primary'; doneBtn.textContent = _d("7Y+J6rCA7JmE66OM");
+                doneBtn.onclick = () => lj(sec, idx, isStopped);
+                top.appendChild(doneBtn);
+            }
+            card.appendChild(top);
+
+
+            let grid = document.createElement('div');
+            grid.className = 'sg';
+            state[sec].hd.forEach((h, sIdx) => {
+                let item = document.createElement('div');
+                item.className = 'si';
+                let label = document.createElement('span');
+                label.className = 'sl'; label.textContent = h;
+                let sel = document.createElement('select');
+                sel.className = 'ss';
+                sel.dataset.sec = sec; sel.dataset.idx = idx;
+                sel.dataset.type = isStopped ? 'stopped' : 'active'; sel.dataset.sidx = sIdx;
+                sel.innerHTML = _d("PG9wdGlvbiB2YWx1ZT0iMCI+7ISg7YOdPC9vcHRpb24+");
+                for (let v = 1; v <= 10; v++) {
+                    let opt = document.createElement('option');
+                    opt.value = v; opt.textContent = mh(v);
+                    if (row.xs[sIdx] == v) opt.selected = true;
+                    sel.appendChild(opt);
+                }
+                item.appendChild(label); item.appendChild(sel);
+                grid.appendChild(item);
+            });
+            card.appendChild(grid);
+
+
+            let actions = document.createElement('div');
+            actions.className = 'ca';
+
+            let hd2 = !!row.dt;
+            let xb = document.createElement('button');
+            xb.className = hd2 ? 'sm primary' : 'sm muted';
+            xb.textContent = hd2 ? _d("7IOB7IS4IOuztOq4sC/siJjsoJU=") : _d("7IOB7IS4IOyekeyEsQ==");
+            xb.onclick = () => lm(sec, idx, isStopped);
+            actions.appendChild(xb);
+
+            let copyBtn = document.createElement('button');
+            copyBtn.className = 'sm'; copyBtn.textContent = _d("67O17IKs");
+            copyBtn.onclick = () => ll(sec, idx, isStopped);
+            actions.appendChild(copyBtn);
+
+            if (isStopped) {
+                let restoreBtn = document.createElement('button');
+                restoreBtn.className = 'sm'; restoreBtn.textContent = _d("67O16rWs");
+                restoreBtn.onclick = () => lh(sec, idx);
+                let delBtn = document.createElement('button');
+                delBtn.className = 'sm danger'; delBtn.textContent = _d("7IKt7KCc");
+                delBtn.onclick = () => li(sec, idx);
+                actions.appendChild(restoreBtn); actions.appendChild(delBtn);
+            } else {
+                let stopBtn = document.createElement('button');
+                stopBtn.className = 'sm muted'; stopBtn.textContent = _d("7KSR64uo");
+                stopBtn.onclick = () => lg(sec, idx);
+                actions.appendChild(stopBtn);
+            }
+            card.appendChild(actions);
+            return card;
+        }
+
+
+
+
+        function ld(sec, containerId) {
+            let s = state[sec];
+            let container = document.getElementById(containerId);
+
+
+            let hh = `<div class="sec-h">
+        <input type="text" class="sti" data-sec="${sec}" data-field="title" value="${s.title}">
+        <div class="sb">
+            <button class="sm" onclick="lp()"><span data-t="7ZWt66qpIOy2lOqwgA=="></span></button>
+            <button class="sm" onclick="lt()"><span data-t="7Iic7IScIO2OuOynkQ=="></span></button>
+            <button class="sm danger" onclick="lq()"><span data-t="7ZWt66qpIOyCreygnA=="></span></button>
+            <button class="sm primary" onclick="lf('${sec}')"><span data-t="7IiY6rCV7IOdIOy2lOqwgA=="></span></button>
+        </div>
+    </div>`;
+            container.innerHTML = hh;
+
+
+            let list = document.createElement('div');
+            list.className = 'slt';
+            s.rw.forEach((row, idx) => list.appendChild(le(sec, row, idx, false)));
+            container.appendChild(list);
+
+
+            if (s.sr.length > 0) {
+                let zz = document.createElement('zz');
+                zz.className = 'std';
+                if (vb[sec]) zz.open = true;
+                zz.addEventListener('toggle', () => mb(sec, zz.open));
+
+                let summary = document.createElement('summary');
+                summary.className = 'sts';
+                summary.textContent = `${_d("7KSR64uo65CcIOyImOqwleyDnSDrs7TqtIDtlaggKA==")}${s.sr.length}${_d("66qFKQ==")}`;
+                zz.appendChild(summary);
+
+                let stoppedList = document.createElement('div');
+                stoppedList.className = 'slt stl';
+                stoppedList.style.marginTop = '8px';
+                s.sr.forEach((row, idx) => stoppedList.appendChild(le(sec, row, idx, true)));
+                zz.appendChild(stoppedList);
+                container.appendChild(zz);
+            }
+        }
+
+        function lc() {
+            ld('A', 'sectionA');
+            ld('B', 'sectionB');
+            mc();
+        }
+
+
+        document.addEventListener('change', function (e) {
+            let el = e.target; if (!el.dataset.sec) return;
+            let sec = el.dataset.sec, field = el.dataset.field, idx = el.dataset.idx, lt = el.dataset.type;
+            let arr = lt === 'stopped' ? state[sec].sr : state[sec].rw;
+            if (field === 'title') state[sec].title = el.value;
+            else if (el.dataset.hidx !== undefined) { state.A.hd[el.dataset.hidx] = el.value; state.B.hd[el.dataset.hidx] = el.value; }
+            else if (field === 'name') arr[idx].name = el.value;
+            else if (el.dataset.sidx !== undefined) arr[idx].xs[el.dataset.sidx] = parseInt(el.value);
+            lb(); mc();
+        });
+
+
+
+
+        const vh = _d("c3luYy5kYXQ=");
+        const vi = "https://www.googleapis.com/auth/drive.appdata https://www.googleapis.com/auth/drive.file";
+        let driveAccessToken = null, vg = null;
+        function mq() { return document.querySelector('meta[name="google-client-id"]').content; }
+        function driveLogin() {
+            const client = google.accounts.oauth2.initTokenClient({
+                client_id: mq(), scope: vi, prompt: "select_account",
+                callback: (resp) => {
+                    if (resp.error) { mp("err", _d("66Gc6re47J24IOyLpO2MqDog") + resp.error); return; }
+                    driveAccessToken = resp.access_token;
+
+                    document.getElementById("loginGate").style.setProperty('display', 'none', 'important');
+                    document.getElementById("appContent").style.setProperty('display', 'block', 'important');
+                    mp("ok", _d("6rWs6riAIOyXsOqysOuQqA=="));
+                    la();
+                    try { driveLoad(); } catch (e) { console.log(e); }
+                }
+            });
+            client.requestAccessToken();
+        }
+        function driveLogout() {
+            driveAccessToken = null; vg = null;
+            sessionStorage.removeItem('driveToken');
+            document.getElementById("appContent").style.setProperty('display', 'none', 'important');
+            document.getElementById("loginGate").style.setProperty('display', 'flex', 'important');
+        }
+        function mp(cls, msg) {
+            let el = document.getElementById("driveStatus");
+            el.className = "ds" + (cls ? " " + cls : "");
+            el.textContent = msg;
+        }
+        async function mo() {
+            let r = await fetch(`https://www.googleapis.com/drive/v3/files?spaces=appDataFolder&q=name='${vh}'&fields=files(id)`, { headers: { Authorization: "Bearer " + driveAccessToken } });
+            if (!r.ok) throw new Error(`API error: ${r.status} ${r.statusText}`);
+            let d = await r.json();
+            return (d.files && d.files.length > 0) ? d.files[0].id : null;
+        }
+        async function driveSave() {
+            if (!driveAccessToken) { alert(_d("66i87KCAIOq1rOq4gCDroZzqt7jsnbjsnYQg7ZW07KO87IS47JqULg==")); return; }
+            mp("ok", _d("7KCA7J6lIOykkS4uLg=="));
+            try {
+                const json = JSON.stringify(state);
+                if (!vg) vg = await mo();
+                if (vg) {
+                    let r = await fetch(`https://www.googleapis.com/upload/drive/v3/files/${vg}?uploadType=media`, { method: "PATCH", headers: { Authorization: "Bearer " + driveAccessToken, "Content-Type": "application/json" }, body: json });
+                    if (!r.ok) throw new Error(`API error: ${r.status} ${r.statusText}`);
+                } else {
+                    let form = new FormData();
+                    form.append("metadata", new Blob([JSON.stringify({ name: vh, parents: ["appDataFolder"] })], { type: "application/json" }));
+                    form.append("file", new Blob([json], { type: "application/json" }));
+                    let r = await fetch("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id", { method: "POST", headers: { Authorization: "Bearer " + driveAccessToken }, body: form });
+                    if (!r.ok) throw new Error(`API error: ${r.status} ${r.statusText}`);
+                    vg = (await r.json()).id;
+                }
+                mp("ok", _d("7KCA7J6lIOyZhOujjCAo") + new Date().toLocaleTimeString() + ")");
+            } catch (e) { mp("err", _d("7KCA7J6lIOyLpO2MqDog") + e.message); }
+        }
+        async function driveLoad() {
+            if (!driveAccessToken) { alert(_d("66i87KCAIOq1rOq4gCDroZzqt7jsnbjsnYQg7ZW07KO87IS47JqULg==")); return; }
+            mp("ok", _d("67aI65+s7Jik64qUIOykkS4uLg=="));
+            try {
+                if (!vg) vg = await mo();
+                if (!vg) { mp("err", _d("7KCA7J6l65CcIO2MjOydvOydtCDsl4bsirXri4jri6Qu")); return; }
+                let r = await fetch(`https://www.googleapis.com/drive/v3/files/${vg}?alt=media`, { headers: { Authorization: "Bearer " + driveAccessToken } });
+                if (!r.ok) throw new Error(`API error: ${r.status} ${r.statusText}`);
+                let p = await r.json();
+                if (!p.A.sr) p.A.sr = [];
+                if (!p.B.sr) p.B.sr = [];
+                state = p; ma(); lb(); lc();
+                mp("ok", _d("67aI65+s7Jik6riwIOyZhOujjCAo") + new Date().toLocaleTimeString() + ")");
+            } catch (e) { mp("err", _d("67aI65+s7Jik6riwIOyLpO2MqDog") + e.message); }
+        }
+
+        window.onload = function () {
+            la();
+            let savedToken = sessionStorage.getItem('driveToken');
+            if (savedToken) {
+                driveAccessToken = savedToken;
+                document.getElementById("loginGate").style.setProperty('display', 'none', 'important');
+                document.getElementById("appContent").style.setProperty('display', 'block', 'important');
+                mp("ok", _d("6rWs6riAIOyXsOqysOuQqA=="));
+                driveLoad().catch(function (e) {
+                    console.log('Token expired, re-login needed:', e);
+                    driveLogout();
+                });
+            }
+        };
+    </script>
+</body>
+
+</html>
