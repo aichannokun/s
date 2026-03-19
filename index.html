@@ -629,8 +629,8 @@ function driveLogin(){
             document.getElementById("loginGate").style.display="none";
             document.getElementById("appContent").style.display="block";
             mp("ok",_d("6rWs6riAIOyXsOqysOuQqA=="));
-            
-            driveLoad();
+            la();
+            try{ driveLoad(); }catch(e){ console.log(e); }
         }
     });
     client.requestAccessToken();
