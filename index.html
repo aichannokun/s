@@ -271,8 +271,9 @@
         }
 
         .cn {
-            flex: 1;
-            min-width: 80px;
+            flex: none;
+            width: 5.5em;
+            min-width: 0;
             border: none;
             background: transparent;
             font-size: 15px;
@@ -745,27 +746,13 @@
             align-items: center;
             gap: 8px;
             padding: 8px 10px;
+            margin: 10px 0 6px 0;
             background: #f8f8f8;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
             font-size: 14px;
             font-weight: 600;
             color: #1a1a1a;
-            cursor: pointer;
-            user-select: none;
-            list-style: none;
-        }
-
-        .ts-header::-webkit-details-marker { display: none; }
-
-        .ts-block {
-            border: 1px solid #e8e8e8;
-            border-radius: 8px;
-            margin: 10px 0 6px 0;
-            overflow: hidden;
-        }
-
-        .ts-block > .slt,
-        .ts-block > .std {
-            padding: 6px 8px;
         }
 
         .ts-num {
@@ -793,37 +780,39 @@
             gap: 2px;
         }
 
-        /* 접힌 학생 카드 */
-        .sc .sc-body { display: none; }
-        .sc.expanded .sc-body { display: block; }
-
-        .sc .ct { cursor: pointer; }
-
-        .multi-slot {
-            font-size: 11px;
-            color: #888;
-            margin-left: 4px;
-            white-space: nowrap;
-        }
-
-        /* 순서이동 버튼 */
-        .reorder-btn {
-            display: inline-flex;
+        /* 접기/펴기 카드 */
+        .card-header {
+            display: flex;
             align-items: center;
-            justify-content: center;
-            width: 20px;
-            height: 20px;
-            font-size: 10px;
+            gap: 6px;
+            flex-wrap: wrap;
             cursor: pointer;
-            color: #888;
-            border: 1px solid #ddd;
-            border-radius: 3px;
-            background: #fff;
-            padding: 0;
-            line-height: 1;
-            font-family: inherit;
+            user-select: none;
         }
-        .reorder-btn:hover { background: #f0f0f0; color: #333; }
+
+        .card-header .ca {
+            margin-top: 0;
+            margin-left: auto;
+        }
+
+        .card-body {
+            display: none;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #eee;
+        }
+
+        .sc.card-open .card-body {
+            display: block;
+        }
+
+        .card-done-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 6px;
+            flex-wrap: wrap;
+        }
     </style>
     <script>function _d(b) { return decodeURIComponent(escape(atob(b))) } document.addEventListener("DOMContentLoaded", function () { document.querySelectorAll("[data-t]").forEach(function (el) { el.outerHTML = _d(el.getAttribute("data-t")) }); document.querySelectorAll("[data-ph]").forEach(function (el) { el.placeholder = _d(el.getAttribute("data-ph")) }); });</script>
 </head>
@@ -1035,6 +1024,7 @@
         let nextTimeSlotId = 3;
         let secOpen = {};
         let stoppedOpen = {};
+        let cardOpen = {};
         let vc = { secId: null, studentId: null };
         let vd = [];
         let ve = false;
@@ -1063,6 +1053,12 @@
         function iconSep() { let s = document.createElement('span'); s.className = 'icon-sep'; s.textContent = '|'; return s; }
         function fmtTime(ap, h, m) { return ap.toLowerCase() + h + ':' + m; }
         function fmtTS(ts) { return fmtTime(ts.startAmpm, ts.startHour, ts.startMin) + ' - ' + fmtTime(ts.endAmpm, ts.endHour, ts.endMin); }
+        function tsToMinutes(ts) {
+            let h = ts.startHour;
+            if (ts.startAmpm === 'PM' && h !== 12) h += 12;
+            if (ts.startAmpm === 'AM' && h === 12) h = 0;
+            return h * 60 + parseInt(ts.startMin || 0);
+        }
 
         /* 시간 파싱/계산 헬퍼 */
         function parseTimeStr(s) { let p = s.split(' '); let [h, m] = p[1].split(':'); return { ampm: p[0], hour: parseInt(h), min: m }; }
@@ -1481,58 +1477,67 @@
 
 
 
-        let cardOpen = {};
-        function getSlotNums(secId, sid) {
-            let sec = getSec(secId); if (!sec) return [];
-            let nums = [];
-            sec.timeSlots.forEach((ts, i) => { if ([...ts.active, ...ts.stopped].includes(sid)) nums.push(i + 1); });
-            return nums;
-        }
-
         function le(secId, tsId, sid, isStopped) {
             let row = getStudent(sid);
             if (!row) return document.createElement('div');
             let isDone = !!row.dd;
             let elapsed = ml(row.dd);
-            let cKey = secId + '_' + tsId + '_' + sid;
-            let isOpen = !!cardOpen[cKey];
-            let card = document.createElement('div');
-            card.className = 'sc' + (isDone ? ' dc' : '') + (isOpen ? ' expanded' : '');
+            let cardKey = secId + '_' + tsId + '_' + sid;
+            let isOpen = !!cardOpen[cardKey];
 
-            let top = document.createElement('div'); top.className = 'ct';
-            top.onclick = (e) => { if (['INPUT','SELECT','BUTTON'].includes(e.target.tagName)) return; cardOpen[cKey] = !cardOpen[cKey]; card.classList.toggle('expanded'); };
+            let card = document.createElement('div');
+            card.className = 'sc' + (isDone ? ' dc' : '') + (isOpen ? ' card-open' : '');
+
+            /* 헤더 (항상 표시): 이름 + 완료뱃지 + 액션버튼 */
+            let header = document.createElement('div');
+            header.className = 'card-header';
+
             let nameInp = document.createElement('input');
             nameInp.type = 'text'; nameInp.className = 'cn';
             nameInp.placeholder = '이름'; nameInp.value = row.name;
-            nameInp.dataset.sid = sid; nameInp.dataset.field = 'name'; nameInp.dataset.secid = secId; nameInp.dataset.tsid = tsId;
-            top.appendChild(nameInp);
-
-            let slotNums = getSlotNums(secId, sid);
-            if (slotNums.length > 1) {
-                let badge = document.createElement('span'); badge.className = 'multi-slot';
-                badge.textContent = '수업참여: ' + slotNums.join(', ');
-                top.appendChild(badge);
-            }
+            nameInp.dataset.sid = sid; nameInp.dataset.field = 'name';
+            nameInp.dataset.secid = secId; nameInp.dataset.tsid = tsId;
+            header.appendChild(nameInp);
 
             if (isDone) {
-                let info = document.createElement('div'); info.className = 'cd';
-                let badge2 = document.createElement('span'); badge2.className = 'db'; badge2.innerHTML = ` ${row.dd}`;
-                let days = document.createElement('span'); days.className = 'de';
-                days.textContent = elapsed !== null ? `- ${elapsed}일 경과` : '';
-                let cancelBtn = document.createElement('button');
-                cancelBtn.className = 'sm muted'; cancelBtn.textContent = '취소';
-                cancelBtn.onclick = () => lk(secId, sid);
-                info.appendChild(badge2); info.appendChild(days); info.appendChild(cancelBtn);
-                top.appendChild(info);
-            } else {
-                let doneBtn = document.createElement('button');
-                doneBtn.className = 'sm primary'; doneBtn.textContent = '평가완료';
-                doneBtn.onclick = () => lj(secId, sid);
-                top.appendChild(doneBtn);
+                let badge = document.createElement('span');
+                badge.className = 'db'; badge.innerHTML = ` ${row.dd}`;
+                header.appendChild(badge);
             }
-            card.appendChild(top);
 
-            let body = document.createElement('div'); body.className = 'sc-body';
+            let actions = document.createElement('div'); actions.className = 'ca';
+            let hd2 = !!row.dt;
+            let xb = document.createElement('button');
+            xb.className = hd2 ? 'sm primary' : 'sm muted';
+            xb.textContent = hd2 ? '수정' : '상세';
+            xb.onclick = (e) => { e.stopPropagation(); lm(secId, sid); };
+            actions.appendChild(xb);
+
+            let copyBtn = document.createElement('button');
+            copyBtn.className = 'sm'; copyBtn.textContent = '복사';
+            copyBtn.onclick = (e) => { e.stopPropagation(); ll(secId, sid); };
+            actions.appendChild(copyBtn);
+
+            if (isStopped) {
+                let restoreBtn = document.createElement('button');
+                restoreBtn.className = 'sm'; restoreBtn.textContent = '복구';
+                restoreBtn.onclick = (e) => { e.stopPropagation(); lh(secId, tsId, sid); };
+                let delBtn = document.createElement('button');
+                delBtn.className = 'sm danger'; delBtn.textContent = '삭제';
+                delBtn.onclick = (e) => { e.stopPropagation(); li(secId, tsId, sid); };
+                actions.appendChild(restoreBtn); actions.appendChild(delBtn);
+            } else {
+                let stopBtn = document.createElement('button');
+                stopBtn.className = 'sm muted'; stopBtn.textContent = '중단';
+                stopBtn.onclick = (e) => { e.stopPropagation(); lg(secId, tsId, sid); };
+                actions.appendChild(stopBtn);
+            }
+            header.appendChild(actions);
+            card.appendChild(header);
+
+            /* 바디 (접기/펴기): 별점 그리드 + 평가완료 버튼 */
+            let body = document.createElement('div');
+            body.className = 'card-body';
 
             let grid = document.createElement('div'); grid.className = 'sg';
             state.hd.forEach((h, sIdx) => {
@@ -1552,65 +1557,39 @@
             });
             body.appendChild(grid);
 
-            let actions = document.createElement('div'); actions.className = 'ca';
-            let hd2 = !!row.dt;
-            let xb = document.createElement('button');
-            xb.className = hd2 ? 'sm primary' : 'sm muted';
-            xb.textContent = hd2 ? '상세 보기/수정' : '상세 작성';
-            xb.onclick = () => lm(secId, sid);
-            actions.appendChild(xb);
-            let copyBtn = document.createElement('button');
-            copyBtn.className = 'sm'; copyBtn.textContent = '복사';
-            copyBtn.onclick = () => ll(secId, sid);
-            actions.appendChild(copyBtn);
-
-            if (isStopped) {
-                let restoreBtn = document.createElement('button');
-                restoreBtn.className = 'sm'; restoreBtn.textContent = '복구';
-                restoreBtn.onclick = () => lh(secId, tsId, sid);
-                let delBtn = document.createElement('button');
-                delBtn.className = 'sm danger'; delBtn.textContent = '삭제';
-                delBtn.onclick = () => li(secId, tsId, sid);
-                actions.appendChild(restoreBtn); actions.appendChild(delBtn);
+            let doneRow = document.createElement('div'); doneRow.className = 'card-done-row';
+            if (isDone) {
+                let daysEl = document.createElement('span'); daysEl.className = 'de';
+                daysEl.textContent = elapsed !== null ? `${elapsed}일 경과` : '';
+                let cancelBtn = document.createElement('button');
+                cancelBtn.className = 'sm muted'; cancelBtn.textContent = '평가취소';
+                cancelBtn.onclick = (e) => { e.stopPropagation(); lk(secId, sid); };
+                doneRow.appendChild(daysEl); doneRow.appendChild(cancelBtn);
             } else {
-                let stopBtn = document.createElement('button');
-                stopBtn.className = 'sm muted'; stopBtn.textContent = '중단';
-                stopBtn.onclick = () => lg(secId, tsId, sid);
-                actions.appendChild(stopBtn);
+                let doneBtn = document.createElement('button');
+                doneBtn.className = 'sm primary'; doneBtn.textContent = '평가완료';
+                doneBtn.onclick = (e) => { e.stopPropagation(); lj(secId, sid); };
+                doneRow.appendChild(doneBtn);
             }
-            body.appendChild(actions);
+            body.appendChild(doneRow);
             card.appendChild(body);
+
+            /* 헤더 클릭 → 접기/펴기 */
+            header.addEventListener('click', (e) => {
+                if (['INPUT', 'SELECT', 'BUTTON', 'TEXTAREA'].includes(e.target.tagName)) return;
+                cardOpen[cardKey] = !cardOpen[cardKey];
+                card.classList.toggle('card-open', cardOpen[cardKey]);
+            });
+
             return card;
         }
 
 
 
 
-        let tsOpen = {};
-
-        function moveSec(secId, dir) {
-            let idx = state.sections.findIndex(s => s.id === secId);
-            let n = idx + dir; if (n < 0 || n >= state.sections.length) return;
-            [state.sections[idx], state.sections[n]] = [state.sections[n], state.sections[idx]];
-            lb(); lc();
-        }
-        function moveTS(secId, tsId, dir) {
-            let sec = getSec(secId); let idx = sec.timeSlots.findIndex(t => t.id === tsId);
-            let n = idx + dir; if (n < 0 || n >= sec.timeSlots.length) return;
-            [sec.timeSlots[idx], sec.timeSlots[n]] = [sec.timeSlots[n], sec.timeSlots[idx]];
-            lb(); lc();
-        }
-        function reorderBtns(id, idx, len, moveFn) {
-            let wrap = document.createElement('span'); wrap.style.cssText = 'display:inline-flex;gap:1px;margin-left:2px;';
-            if (idx > 0) { let up = document.createElement('button'); up.className = 'reorder-btn'; up.textContent = '▲'; up.onclick = (e) => { e.stopPropagation(); e.preventDefault(); moveFn(id, -1); }; wrap.appendChild(up); }
-            if (idx < len - 1) { let dn = document.createElement('button'); dn.className = 'reorder-btn'; dn.textContent = '▼'; dn.onclick = (e) => { e.stopPropagation(); e.preventDefault(); moveFn(id, 1); }; wrap.appendChild(dn); }
-            return wrap;
-        }
-
         function ld(secId) {
             let s = getSec(secId);
             if (!s) return document.createElement('div');
-            let secIdx = state.sections.indexOf(s);
             let wrapper = document.createElement('div');
 
             let details = document.createElement('details');
@@ -1625,7 +1604,6 @@
 
             let icons = document.createElement('span');
             icons.className = 'sec-icons';
-            icons.appendChild(reorderBtns(secId, secIdx, state.sections.length, (id, dir) => moveSec(id, dir)));
             icons.appendChild(iconBtn('clock', true, '시간대 추가', (e) => { e.stopPropagation(); e.preventDefault(); openAddTimeSlotModal(secId); }));
             icons.appendChild(iconSep());
             icons.appendChild(iconBtn('pencil', false, '편집', (e) => {
@@ -1642,27 +1620,21 @@
             summ.appendChild(icons);
             details.appendChild(summ);
 
-            /* 시간대별 렌더링 */
-            s.timeSlots.forEach((ts, tsIdx) => {
-                let tsBlock = document.createElement('details');
-                tsBlock.className = 'ts-block';
-                let tsKey = secId + '_ts_' + ts.id;
-                if (tsOpen[tsKey] !== false) tsBlock.open = true;
-                tsBlock.addEventListener('toggle', () => { tsOpen[tsKey] = tsBlock.open; });
-
-                let tsHeader = document.createElement('summary');
+            /* 시간대별 렌더링 (시작 시간 오름차순 정렬) */
+            let sortedSlots = [...s.timeSlots].sort((a, b) => tsToMinutes(a) - tsToMinutes(b));
+            sortedSlots.forEach((ts, tsIdx) => {
+                let tsHeader = document.createElement('div');
                 tsHeader.className = 'ts-header';
                 let tsNum = document.createElement('span'); tsNum.className = 'ts-num'; tsNum.textContent = tsIdx + 1;
                 let tsTime = document.createElement('span'); tsTime.className = 'ts-time'; tsTime.textContent = fmtTS(ts);
                 let tsAct = document.createElement('span'); tsAct.className = 'ts-actions';
-                tsAct.appendChild(reorderBtns(ts.id, tsIdx, s.timeSlots.length, (id, dir) => moveTS(secId, id, dir)));
                 tsAct.appendChild(iconBtn('person', true, '수강생 추가', () => lf(secId, ts.id)));
                 tsAct.appendChild(iconSep());
                 tsAct.appendChild(iconBtn('pencil', false, '시간대 편집', () => openEditTimeSlotModal(secId, ts.id)));
                 tsAct.appendChild(iconSep());
                 tsAct.appendChild(iconBtn('trash', false, '시간대 삭제', () => deleteTimeSlot(secId, ts.id)));
                 tsHeader.appendChild(tsNum); tsHeader.appendChild(tsTime); tsHeader.appendChild(tsAct);
-                tsBlock.appendChild(tsHeader);
+                details.appendChild(tsHeader);
 
                 let list = document.createElement('div');
                 list.className = 'slt'; list.dataset.secid = secId; list.dataset.tsid = ts.id;
@@ -1672,7 +1644,7 @@
                     setupLongPressDrag(card, secId, ts.id, idx);
                     list.appendChild(card);
                 });
-                tsBlock.appendChild(list);
+                details.appendChild(list);
 
                 if (ts.stopped.length > 0) {
                     let stKey = secId + '_' + ts.id;
@@ -1685,9 +1657,8 @@
                     let stoppedList = document.createElement('div');
                     stoppedList.className = 'slt stl'; stoppedList.style.marginTop = '8px';
                     ts.stopped.forEach(sid => stoppedList.appendChild(le(secId, ts.id, sid, true)));
-                    zz.appendChild(stoppedList); tsBlock.appendChild(zz);
+                    zz.appendChild(stoppedList); details.appendChild(zz);
                 }
-                details.appendChild(tsBlock);
             });
 
             wrapper.appendChild(details);
